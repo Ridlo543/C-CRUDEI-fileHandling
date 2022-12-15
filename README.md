@@ -8,10 +8,7 @@ Input data dapat berupa NIM, Nama, Gender, dan IPK
 buka file [CRUDEI.c](https://github.com/Ridlo543/C-CRUDEI-fileHandling/blob/main/CRUDEI.c)
 
 ```C
-// Ridlo L0122138
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 // struct
 typedef struct
