@@ -5,7 +5,7 @@ Ini merupakan Program C dalam file processing untuk membuat data dalam file berb
 Program ini dapat Create, Read, Update, Delete, Export, Import Data <br>
 Input data dapat berupa NIM, Nama, Gender, dan IPK
 
-buka file CRUDEI.c
+buka file [CRUDEI.c](https://github.com/Ridlo543/C-CRUDEI-fileHandling/blob/main/CRUDEI.c)
 
 ```C
 // Ridlo L0122138
