@@ -1,7 +1,5 @@
 // Ridlo L0122138
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 // struct
 typedef struct
