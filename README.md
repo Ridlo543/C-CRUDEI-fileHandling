@@ -11,7 +11,6 @@ atau klik source dibawah ini
   <summary>Source Code</summary>
   
 ```c
-        
 #include <stdio.h>
 #include <math.h>
 
@@ -502,7 +501,7 @@ void filterIPKMahasiswa()
   int option;
   FILE *fp;
   Mahasiswa tempmhs;
-  float IPK, totalIPK = 0;
+  float averageIPK, totalIPK = 0;
   int jumlahData = 0;
   printf("=======FILTER IPK========\n");
   printf("[1] Lebih dari rata-rata\n");
@@ -524,18 +523,18 @@ void filterIPKMahasiswa()
   }
 
   // Hitung IPK rata-rata
-  IPK = totalIPK / jumlahData;
+  averageIPK = totalIPK / jumlahData;
 
   // Cetak data mahasiswa dari file
   rewind(fp);
   while (fscanf(fp, "%d;%[^;];%[^;];%f\n", &tempmhs.NIM, tempmhs.Nama, tempmhs.gender, &tempmhs.IPK) != EOF)
   {
     // Cetak data mahasiswa sesuai kondisi yang diinginkan
-    if (option == 1 && tempmhs.IPK > IPK)
+    if (option == 1 && tempmhs.IPK > averageIPK)
     {
       printf("\n| %4d  | %-30s | %-13s | %-2.2f  |", tempmhs.NIM, tempmhs.Nama, tempmhs.gender, tempmhs.IPK);
     }
-    else if (option == 2 && tempmhs.IPK < IPK)
+    else if (option == 2 && tempmhs.IPK < averageIPK)
     {
       printf("\n| %4d  | %-30s | %-13s | %-2.2f  |", tempmhs.NIM, tempmhs.Nama, tempmhs.gender, tempmhs.IPK);
     }
@@ -544,6 +543,7 @@ void filterIPKMahasiswa()
   // Tutup file
   fclose(fp);
   printf("\n+------------------------------------------------------------------+");
+  printf("\nRata-rata IPK = %.2f", averageIPK);
   printf("\nData berhasil difilter\n");
 }
 
@@ -566,7 +566,7 @@ void detailDataMahasiswa()
 
   fp = fopen("mahasiswa.txt", "r");
 
-  // Cetak data mahasiswa dari file
+  // Cetak data mahasiswa dari file ke array
   while (fscanf(fp, "%d;%[^;];%[^;];%f\n", &tempmhs.NIM, tempmhs.Nama, tempmhs.gender, &tempmhs.IPK) != EOF)
   {
     sum_IPK += tempmhs.IPK;
@@ -635,8 +635,10 @@ void detailDataMahasiswa()
 
   printf("\n\n+=======================DETAIL DATA MAHASISWA=======================+");
   printf("\n| Banyak data\t\t\t\t\t\t : %d", n);
-  printf("\n| Mean\t\t\t\t\t\t\t\t : %2.2f", mean_IPK);
-  printf("\n| Median\t\t\t\t\t\t\t : %2.2f", median_IPK);
+  printf("\n| Nilai maksimal\t\t\t\t\t : %2.2f", max_IPK);
+  printf("\n| Nilai minimal\t\t\t\t\t\t : %2.2f", min_IPK);
+  printf("\n| Mean\t\t\t\t\t\t\t : %2.2f", mean_IPK);
+  printf("\n| Median\t\t\t\t\t\t : %2.2f", median_IPK);
   printf("\n| Modus\t\t\t\t\t\t\t : %2.2f", modus_IPK);
   printf("\n| Range\t\t\t\t\t\t\t : %2.2f", range_IPK);
   printf("\n| Varian\t\t\t\t\t\t : %2.2f", varian_IPK);
@@ -646,7 +648,6 @@ void detailDataMahasiswa()
   // Tutup file
   fclose(fp);
 }
-
 ```
         
 </details>
