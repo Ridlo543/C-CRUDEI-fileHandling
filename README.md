@@ -8,7 +8,7 @@ Input data dapat berupa NIM, Nama, Gender, dan IPK<br>
 buka file [CRUDEI.c](https://github.com/Ridlo543/C-CRUDEI-fileHandling/blob/main/CRUDEI.c)<br>
 atau klik source dibawah ini
 <details>
-  <summary>Contoh penggunaan array 2 dimensi</summary>
+  <summary>Source Code</summary>
   
 ```c
         
