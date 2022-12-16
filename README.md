@@ -6,10 +6,12 @@ Ini merupakan Program C dalam file processing untuk membuat data dalam file berb
 Program ini dapat Create, Read, Update, Delete, Export, Import Data serta Find dan Sort data<br>
 Input data dapat berupa NIM, Nama, Gender, dan IPK<br>
 buka file [CRUDEI.c](https://github.com/Ridlo543/C-CRUDEI-fileHandling/blob/main/CRUDEI.c)<br>
-atau klik source dibawah ini<br>
+atau klik source dibawah ini
 <details>
-  <summary>Source Kode CRUDEI++</summary>
+  <summary>Contoh penggunaan array 2 dimensi</summary>
+  
 ```c
+        
 #include <stdio.h>
 #include <math.h>
 
@@ -644,5 +646,7 @@ void detailDataMahasiswa()
   // Tutup file
   fclose(fp);
 }
+
 ```
+        
 </details>
