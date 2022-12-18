@@ -6,7 +6,7 @@ typedef struct
 {
   int NIM;
   char Nama[100];
-  char gender[100];
+  char gender[30];
   float IPK;
 } Mahasiswa;
 
@@ -32,7 +32,7 @@ int main()
   char filename[50];
   Mahasiswa mhs;
   int NIM;
-
+  printf("\n======[ FILE-HANDLING-DATA-MAHASISWA ]=======");
   // option
   do
   {
@@ -170,6 +170,12 @@ void ubahMahasiswa(int NIM, Mahasiswa mhs)
   // Buka file mahasiswa.txt
   fp = fopen("mahasiswa.txt", "r");
 
+  // Periksa file apakah ada
+  if (fp == NULL)
+  {
+    printf("\n<Data file kosong>\n");
+    return;
+  }
   // Buka file sementara
   FILE *temp = fopen(tempFilename, "w");
 
@@ -216,6 +222,13 @@ void hapusMahasiswa(int NIM)
   // Buka file mahasiswa.txt
   fp = fopen("mahasiswa.txt", "r");
 
+  // Periksa file apakah ada
+  if (fp == NULL)
+  {
+    printf("\n<Data file kosong>\n");
+    return;
+  }
+
   // Buka file sementara
   FILE *temp = fopen(tempFilename, "w");
 
@@ -252,10 +265,18 @@ void showDataMahasiswa()
   Mahasiswa tempmhs;
 
   printf("\n\n+=========================DATA MAHASISWA===========================+");
-  printf("\n| %4s  | %-30s | %-13s | %-2.2f  |", "NIM", "Nama", "Jenis Kelamin", "IPK");
+  printf("\n| %4s  | %-30s | %-13s | %-2s  |", "NIM", "Nama", "Jenis Kelamin", "IPK");
   printf("\n+------------------------------------------------------------------+");
 
+  // buka file
   fp = fopen("mahasiswa.txt", "r");
+
+  // Periksa file apakah ada
+  if (fp == NULL)
+  {
+    printf("\n<Data file kosong>\n");
+    return;
+  }
 
   // Cetak data mahasiswa dari file
   while (fscanf(fp, "%d;%[^;];%[^;];%f\n", &tempmhs.NIM, tempmhs.Nama, tempmhs.gender, &tempmhs.IPK) != EOF)
@@ -279,7 +300,7 @@ void importDataMahasiswa(char *filename)
   // Buka file
   fp = fopen(filename, "r");
 
-  // Periksa file
+  // Periksa file apakah ada
   if (fp == NULL)
   {
     printf("\nFile tidak ditemukan\n");
@@ -311,6 +332,14 @@ void exportDataMahasiswa(char *filename)
 
   // Baca data dari mahasiswa.txt
   FILE *mhsfp = fopen("mahasiswa.txt", "r");
+
+  // Periksa file apakah ada
+  if (mhsfp == NULL)
+  {
+    printf("\n<Data file kosong>\n");
+    return;
+  }
+
   while (fscanf(mhsfp, "%d;%[^;];%[^;];%f\n", &tempmhs.NIM, tempmhs.Nama, tempmhs.gender, &tempmhs.IPK) != EOF)
   {
     // Tulis data ke file
@@ -331,11 +360,18 @@ void cariMahasiswa(int NIM)
   Mahasiswa tempmhs;
 
   fp = fopen("mahasiswa.txt", "r");
+  // Periksa file apakah ada
+  if (fp == NULL)
+  {
+    printf("\n<Data file kosong>\n");
+    return;
+  }
 
   printf("\n\n+=========================DATA MAHASISWA============================+");
-  printf("\n| %4s  | %-30s | %-13s | %-2.2f  |", "NIM", "Nama", "Jenis Kelamin", "IPK");
+  printf("\n| %4s  | %-30s | %-13s | %-2s  |", "NIM", "Nama", "Jenis Kelamin", "IPK");
   printf("\n+------------------------------------------------------------------+");
 
+  // Membaca file
   while (fscanf(fp, "%d;%[^;];%[^;];%f\n", &tempmhs.NIM, tempmhs.Nama, tempmhs.gender, &tempmhs.IPK) != EOF)
   {
     if (NIM == tempmhs.NIM)
@@ -360,6 +396,14 @@ void sortNIMMahasiswa()
   int i = 0;
 
   fp = fopen("mahasiswa.txt", "r");
+
+  // Periksa file apakah ada
+  if (fp == NULL)
+  {
+    printf("\n<Data file kosong>\n");
+    return;
+  }
+
   // Menyimpan data mahasiswa dari file ke array
   while (fscanf(fp, "%d;%[^;];%[^;];%f\n", &tempmhs.NIM, tempmhs.Nama, tempmhs.gender, &tempmhs.IPK) != EOF)
   {
@@ -420,6 +464,7 @@ void sortNIMMahasiswa()
   printf("\nData berhasil di sort\n");
 }
 
+// Fungsi untuk mengurutkan data mahasiswa berdasarkan IPK
 void sortIPKMahasiswa()
 {
   int option;
@@ -428,6 +473,13 @@ void sortIPKMahasiswa()
   int i, j, counter;
 
   fp = fopen("mahasiswa.txt", "r");
+
+  // Periksa file apakah ada
+  if (fp == NULL)
+  {
+    printf("\n<Data file kosong>\n");
+    return;
+  }
 
   // Copy data mahasiswa ke array
   counter = 0;
@@ -483,6 +535,7 @@ void sortIPKMahasiswa()
   printf("\nData berhasil di sort\n");
 }
 
+// Fungsi untuk menyaring IPK dengan kondisi tertentu
 void filterIPKMahasiswa()
 {
   int option;
@@ -490,6 +543,17 @@ void filterIPKMahasiswa()
   Mahasiswa tempmhs;
   float averageIPK, totalIPK = 0;
   int jumlahData = 0;
+
+  // Buka file
+  fp = fopen("mahasiswa.txt", "r");
+
+  // Periksa file apakah ada
+  if (fp == NULL)
+  {
+    printf("\n<Data file kosong>\n");
+    return;
+  }
+
   printf("=======FILTER IPK========\n");
   printf("[1] Lebih dari rata-rata\n");
   printf("[2] Kurang dari rata-rata\n");
@@ -497,11 +561,8 @@ void filterIPKMahasiswa()
   scanf("%d", &option);
 
   printf("\n\n+=========================DATA MAHASISWA===========================+");
-  printf("\n| %4s  | %-30s | %-13s | %-2.2f  |", "NIM", "Nama", "Jenis Kelamin", "IPK");
+  printf("\n| %4s  | %-30s | %-13s | %-2s  |", "NIM", "Nama", "Jenis Kelamin", "IPK");
   printf("\n+------------------------------------------------------------------+");
-
-  fp = fopen("mahasiswa.txt", "r");
-
   // Hitung total IPK dan jumlah data
   while (fscanf(fp, "%d;%[^;];%[^;];%f\n", &tempmhs.NIM, tempmhs.Nama, tempmhs.gender, &tempmhs.IPK) != EOF)
   {
@@ -517,7 +578,7 @@ void filterIPKMahasiswa()
   while (fscanf(fp, "%d;%[^;];%[^;];%f\n", &tempmhs.NIM, tempmhs.Nama, tempmhs.gender, &tempmhs.IPK) != EOF)
   {
     // Cetak data mahasiswa sesuai kondisi yang diinginkan
-    if (option == 1 && tempmhs.IPK > averageIPK)
+    if (option == 1 && tempmhs.IPK >= averageIPK)
     {
       printf("\n| %4d  | %-30s | %-13s | %-2.2f  |", tempmhs.NIM, tempmhs.Nama, tempmhs.gender, tempmhs.IPK);
     }
@@ -552,6 +613,12 @@ void detailDataMahasiswa()
   float standar_deviasi_IPK;
 
   fp = fopen("mahasiswa.txt", "r");
+  // Periksa file apakah ada
+  if (fp == NULL)
+  {
+    printf("\n<Data file kosong>\n");
+    return;
+  }
 
   // Cetak data mahasiswa dari file ke array
   while (fscanf(fp, "%d;%[^;];%[^;];%f\n", &tempmhs.NIM, tempmhs.Nama, tempmhs.gender, &tempmhs.IPK) != EOF)
