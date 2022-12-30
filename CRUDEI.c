@@ -1,3 +1,14 @@
+/*
+L0122138 Ridlo Abdullah Ulinnuha
+
+CRUDEI : Create, Read, Update, Delete, Export, Import in C file-handling program
+        ++Find, Sort, Filter data
+
+Ini merupakan Program C dalam file processing untuk membuat data dalam file berbentuk txt atau format lain.
+Program ini dapat Create, Read, Update, Delete, Export, Import Data serta Find dan Sort data
+Input data dapat berupa NIM, Nama, Gender, dan IPK
+*/
+
 #include <stdio.h>
 #include <math.h>
 
